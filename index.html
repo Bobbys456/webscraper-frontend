@@ -3,7 +3,10 @@
   <head>
     <meta charset="UTF-8">
     <title>Simple Form</title>
+    
+    <link rel="stylesheet" type="text/css" href="CSS/style.css">
   </head>
+  
   <body>
     <form id="myForm">
       <label for="name">Company Name:</label>
@@ -12,34 +15,16 @@
       <input type="submit" value="Submit">
     </form>
 
+    <div class ='loadingbar'>
+      <br><br>
+      <label for="file">Loading progress:</label>
+      <progress id="file" value="32" max="100"><script src="JS/loading.js"></script> </progress> <br><br>
+    </div>
+
     
 
-    <script>
-      const form = document.getElementById('myForm');
-      form.addEventListener('submit', e => {
-        e.preventDefault();
-        const formData = new FormData(form);
-        fetch('http://127.0.0.1:5000/companies', {
-          method: 'POST',
-          body: formData
-        })
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          console.log(response.json());
-        })
-        .then(data => {
-          console.log('Form data sent successfully:', data);
-        })
-        .catch(error => {
-          console.error('Error sending form data:', error);
-        });
-      });
-    </script>
+    <a href="http://127.0.0.1:5000/get" class="button">Download CSV</a>
 
-    <a href="http://127.0.0.1:5000/return-files" class="button"><button> summary.csv/<button></summary.csv></a>
-    
-
+    <script src="JS/script.js"></script>
   </body>
 </html>
